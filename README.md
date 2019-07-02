@@ -12,6 +12,9 @@ If you use NPM, `npm install d3-fcs`. Otherwise, download the [latest release](h
 
 Refer to the observable notebook (@wolfiex), or test file (in the test directory on the github repository)
 
+https://observablehq.com/@wolfiex/d3-fcs-demo
+
+
 ```
 fcs = require('d3-fcs')
 

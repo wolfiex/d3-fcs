@@ -8,14 +8,14 @@ export default function(scatter) {
     })
     .rollup(function(leaves) {
       return {
-        x: d3.mean(leaves, d => d.x),
-        y: d3.mean(leaves, d => d.y)
+        x: d3.mean(leaves, function(d){return d.x}),
+        y: d3.mean(leaves, function(d){return d.x})
       };
     })
     .entries(scatter);
 
 
-  var pairs = Object.values(center).map(d => [d.value.x || 0, d.value.y || 0]);
+  var pairs = Object.values(center).map(function(d){ return [d.value.x || 0, d.value.y || 0]});
 
   const dmodule = require("d3-delaunay");
 
@@ -27,12 +27,12 @@ export default function(scatter) {
       return null;
     }
 
-    var nodes = [...delaunay.neighbors(id)];
+    var nodes = new Array(delaunay.neighbors(id));
 
     if (nodes.length == 0) {
       return null;
     }
-    var colrs = new Set(nodes.map(d => mapping[d]));
+    var colrs = new Set(nodes.map(function(d){return mapping[d]}));
     var counter = 0;
     var match = false;
 
@@ -48,8 +48,8 @@ export default function(scatter) {
 
 
     nodes
-      .filter(d => !mapping[d])
-      .map(d => {
+      .filter(function(d){ return !mapping[d]})
+      .map(function(d){
         greedy(d);
       });
 
@@ -58,9 +58,9 @@ export default function(scatter) {
 
   greedy(Object.keys(center)[0]);
 
-  var keys = center.map(d=>d.key);
+  var keys = center.map(function(d){d.key});
   var groupcol = {};
-  Object.values(mapping).forEach((d,i)=>{groupcol[keys[i]] = d})
+  Object.values(mapping).forEach(function(d,i){groupcol[keys[i]] = d})
 
   return groupcol;
 }

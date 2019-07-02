@@ -26,7 +26,9 @@
     "uglify-js": "2"
   },
   "dependencies": {
+    "browserify": "^16.2.3",
+    "d3": "^4.13.0",
     "d3-delaunay": "^5.0.2",
-    "d3": "^4.13.0"
+    "uglifyjs": "^2.4.11"
   }
 }
