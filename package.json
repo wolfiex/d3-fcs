@@ -1,0 +1,32 @@
+{
+  "name": "d3-fcs",
+  "version": "0.0.1",
+  "description": "Daniel Ellis' implementation of the fourcolours algorithm for all scatterplot / graph data. ",
+  "keywords": [
+    "d3",
+    "d3-module"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "build/d3-fcs.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/wolfiex/d3-fcs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wolfiex/d3-fcs.git"
+  },
+  "scripts": {
+    "pretest": "rm -rf build && mkdir build && rollup -f umd -n d3 -o build/d3-fcs.js -- index.js",
+    "test": "tape 'test/**/*-test.js'",
+    "prepublish": "npm run test && uglifyjs build/d3-fcs.js -c -m -o build/d3-fcs.min.js",
+    "postpublish": "zip -j build/d3-fcs.zip -- LICENSE README.md build/d3-fcs.js build/d3-fcs.min.js"
+  },
+  "devDependencies": {
+    "rollup": "^0.27.1",
+    "tape": "4",
+    "uglify-js": "2"
+  },
+  "dependencies": {
+    "d3-delaunay": "^5.0.2",
+    "d3": "^4.13.0"
+  }
+}
